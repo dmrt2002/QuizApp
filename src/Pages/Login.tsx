@@ -16,7 +16,7 @@ function Login() {
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault()
-    const res = await axios.post("http://localhost:5000/users/login", {email: formData.email, password: formData.password})
+    const res = await axios.post("http://localhost:5000/admins/login", {email: formData.email, password: formData.password})
     if(res.status === 200) {
       dispatch(updateUser({email: formData.email, id: res.data.user._id, name: res.data.user.name}))
       navigate("/")
@@ -29,12 +29,10 @@ function Login() {
         <div style={{minHeight: "80vh"}} className="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md">
           <div className="p-4 py-6 text-white bg-blue-500 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly">
             <div className="my-3 text-4xl font-bold tracking-wider text-center">
-              <a href="#">TrendEvo</a>
+              <a href="#">QuizSync</a>
             </div>
             <p className="mt-6 font-normal text-center text-gray-300 md:mt-0">
-              Discover TrendEvo: Your one-stop shop for trendy shirts, top-notch
-              laptops and mobiles, and premium skincare. Stay stylish,
-              connected, and glowing with us.
+            Create, Share, Connect: Join QuizSync and unleash the power of interactive quizzes. Craft personalized quizzes, share them effortlessly, and embark on a journey of knowledge and fun together.
             </p>
             <p className="flex flex-col items-center justify-center mt-10 text-center">
               <span>Don't have an account?</span>
@@ -91,14 +89,6 @@ function Login() {
                 />
               </div>
               <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="remember"
-                  className="w-4 h-4 transition duration-300 rounded focus:ring-2 focus:ring-offset-0 focus:outline-none focus:ring-blue-200"
-                />
-                <label className="text-sm font-semibold text-gray-500">
-                  Remember me
-                </label>
               </div>
               <div>
                 <button
