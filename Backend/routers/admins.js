@@ -6,5 +6,6 @@ var jsonParser = bodyParser.json()
 
 router.post("/login", jsonParser, userController.adminLogin);
 router.post("/register", jsonParser, userController.registerAdmins);
+router.post("/quiz/create", jsonParser, userController.createQuiz);
 
 module.exports = router;

@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../store";
 import { updateUser } from "../store/user/userSlice";
+
 function Login() {
   const dispatch = useDispatch<AppDispatch>();
+
 
   const [formData, setFormData] = useState({
     email: "",
@@ -19,7 +21,7 @@ function Login() {
     const res = await axios.post("http://localhost:5000/admins/login", {email: formData.email, password: formData.password})
     if(res.status === 200) {
       dispatch(updateUser({email: formData.email, id: res.data.user._id, name: res.data.user.name}))
-      navigate("/")
+      navigate("/create")
     }
   }
 

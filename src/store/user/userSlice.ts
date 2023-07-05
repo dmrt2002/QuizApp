@@ -16,7 +16,9 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         updateUser: (state, action: PayloadAction<userState>) => {
-            state= action.payload
+            state.id = action.payload.id
+            state.email = action.payload.email
+            state.name = action.payload.name
         }
     }
 })

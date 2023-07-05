@@ -34,3 +34,11 @@ exports.adminLogin = async (req, res) => {
   }
 };
 
+exports.createQuiz = async (req, res) => {
+  try {
+    console.log(req.body)
+  }
+  catch(e) {
+    console.log(e)
+  }
+}

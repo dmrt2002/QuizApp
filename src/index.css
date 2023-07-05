@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.box {
-
+.custom-hide {
+    left: -16rem !important;
+}
+.custom-show {
+    left: 0 !important;
 }
