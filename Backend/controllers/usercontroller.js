@@ -1,4 +1,5 @@
 const Admin = require("../modals/Admin");
+const Questions = require("../modals/Questions");
 
 exports.registerAdmins = async (req, res) => {
   var name = req.body.name;
@@ -36,7 +37,19 @@ exports.adminLogin = async (req, res) => {
 
 exports.createQuiz = async (req, res) => {
   try {
-    console.log(req.body)
+    let { questions, adminId, quizTitle} = req.body;
+    Questions.create({
+      adminId: adminId,
+      questions: questions,
+      title: quizTitle
+    }, async function(err, question) {
+      if(question) {
+        res.status(200).json({ question })
+      }
+      else if(err) {
+        console.log(err)
+      }
+    })
   }
   catch(e) {
     console.log(e)

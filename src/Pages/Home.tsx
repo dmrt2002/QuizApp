@@ -2,24 +2,30 @@ import React from "react";
 import SideBar from "../components/SideBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import axios from 'axios'
+import axios from "axios";
+
 export default function Home() {
   const questionSlice = useSelector((state: RootState) => state.question);
-  const userSlice = useSelector((state: RootState) => state.user)
+  const userSlice = useSelector((state: RootState) => state.user);
   const [question, setQuestion] = React.useState<Object[]>([]);
+
   React.useEffect(() => {
-    console.log();
     let emptyArray = new Array(parseInt(questionSlice.questions));
     emptyArray.fill({});
     setQuestion(emptyArray);
   }, []);
+
   const submit = async () => {
-    console.log(userSlice)
-    const res = await axios.post("http://localhost:5000/admins/quiz/create", {questions: question, adminId: userSlice.id, quizTitle: questionSlice.title })
-    if(res.status === 200) {
-      console.log("fuck")
+    const res = await axios.post("http://localhost:5000/admins/quiz/create", {
+      questions: question,
+      adminId: userSlice.id,
+      quizTitle: questionSlice.title,
+    });
+    if (res.status === 200) {
+      console.log("fuck");
     }
-  }
+  };
+
   const handleQuestion = (value: string, index: number, property: string) => {
     setQuestion((prevQuestion) => {
       const updatedQuestion = prevQuestion.map((item, ind) => {
@@ -48,13 +54,18 @@ export default function Home() {
             ...item,
             opt4: value,
           };
+        } else if (ind === index && property === "answer") {
+          return {
+            ...item,
+            answer: value,
+          };
         }
         return item;
       });
       return updatedQuestion;
     });
-    console.log(question);
   };
+
   return (
     <div>
       <SideBar />
@@ -139,6 +150,18 @@ export default function Home() {
                 />
               </div>
             </div>
+            <div className="flex justify-center items-center">
+            <select
+              onChange={(e) => handleQuestion(e.target.value, index, "answer")}
+              className="bg-gray-50 mb-5 border mt-4 w-72 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Correct Answer</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            </div>
           </div>
         );
       })}
@@ -147,8 +170,8 @@ export default function Home() {
         style={{ display: "grid" }}
       >
         <a
-        onClick={submit}
-          className="inline-flex cursor-pointer w-32 items-center justify-center px-4 py-2 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600"
+          onClick={submit}
+          className="inline-flex cursor-pointer w-32 mt-4 items-center justify-center px-4 py-2 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600"
         >
           Submit
         </a>

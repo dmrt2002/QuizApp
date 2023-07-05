@@ -8,7 +8,7 @@ export default function SideBar() {
     console.log(SideBarState)
   }
   return (
-    <div className={`flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800`}>
+    <div className={`flex sticky top-0 flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800`}>
       <div className={`fixed flex flex-col top-0 left-0 w-64 bg-white h-full border-r ${SideBarState ? 'custom-hide' : 'custom-show'}`}>
         <div className="flex items-center justify-between h-14 border-b">
           <div className="px-4">QuizSync</div>

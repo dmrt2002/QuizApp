@@ -16,6 +16,7 @@ export const questionSlice = createSlice({
         updateTitle: (state, action: PayloadAction<questionState>) => {
             state.title = action.payload.title;
             state.questions = action.payload.questions;
+            console.log(action.payload.title);
         }
     }
 })
