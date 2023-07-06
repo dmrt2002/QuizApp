@@ -1,9 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.custom-hide {
-    left: -16rem !important;
+
+.animate-left {
+    animation: linear;
+    animation-name: run;
+    animation-duration: 0.5s;
+    left: -16rem;
 }
-.custom-show {
-    left: 0 !important;
+.animate-right {
+    animation: linear;
+    animation-name: run-backwards;
+    animation-duration: 0.5s;
+    left: 0;
+}
+@keyframes run {
+    0% { left: 0rem;}
+    100%{ left: -16rem;}
+}
+@keyframes run-backwards {
+    0% { left: -16rem;}
+    100%{ left: 0rem;}
 }

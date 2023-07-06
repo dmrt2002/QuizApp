@@ -7,7 +7,7 @@ export interface userState {
 }
 const initialState: userState = {
     id: "1",
-    name: "Tushar",
+    name: "fucker",
     email:"tushar@gmail.com"
 }
 
@@ -19,6 +19,7 @@ export const userSlice = createSlice({
             state.id = action.payload.id
             state.email = action.payload.email
             state.name = action.payload.name
+            console.log(state.id)
         }
     }
 })

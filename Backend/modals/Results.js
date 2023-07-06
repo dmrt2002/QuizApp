@@ -4,9 +4,9 @@ const resultSchema = mongoose.Schema({
     type: String,
   },
   userId: {
-    type: Array,
+    type: String
   },
-  score: {
+  percentage: {
     type: String,
   }
 });

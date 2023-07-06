@@ -1,15 +1,19 @@
 import React from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 export default function SideBar() {
   const [ SideBarState, setSidebarState] = React.useState(false);
+  let userSlice = useSelector((state: RootState) => state.user)
+  console.log(userSlice.id)
   const Navigate = () => {
     setSidebarState(!SideBarState)
-    console.log(SideBarState)
   }
   return (
-    <div className={`flex sticky top-0 flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800`}>
-      <div className={`fixed flex flex-col top-0 left-0 w-64 bg-white h-full border-r ${SideBarState ? 'custom-hide' : 'custom-show'}`}>
+    <div className={`flex sticky top-0 flex-col flex-auto flex-shrink-0 antialiased bg-red text-gray-800`}>
+      <div className={`fixed flex flex-col top-0 left-0 w-64 bg-white h-full border-r ${SideBarState ? 'animate-left' : 'animate-right'}`}>
         <div className="flex items-center justify-between h-14 border-b">
           <div className="px-4">QuizSync</div>
           <AiOutlineClose className="mr-4 cursor-pointer" onClick={Navigate} size={18} />
@@ -64,9 +68,11 @@ export default function SideBar() {
                     ></path>
                   </svg>
                 </span>
+                <Link to="/admin/quizes">
                 <span className="ml-2 text-sm tracking-wide truncate">
                   Dashboard
                 </span>
+                </Link>
               </a>
             </li>
             <li>
@@ -90,9 +96,11 @@ export default function SideBar() {
                     ></path>
                   </svg>
                 </span>
+                <Link to="/create">
                 <span className="ml-2 text-sm tracking-wide truncate">
                  Create a Quiz
                 </span>
+                </Link>
               </a>
             </li>
             <li>

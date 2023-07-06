@@ -20,8 +20,9 @@ function Login() {
     event.preventDefault()
     const res = await axios.post("http://localhost:5000/admins/login", {email: formData.email, password: formData.password})
     if(res.status === 200) {
+      console.log(res.data.user._id)
       dispatch(updateUser({email: formData.email, id: res.data.user._id, name: res.data.user.name}))
-      navigate("/create")
+      navigate("/admin/quizes")
     }
   }
 

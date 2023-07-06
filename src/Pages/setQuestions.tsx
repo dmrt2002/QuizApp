@@ -16,6 +16,7 @@ export default function Home() {
   const navigate = useNavigate()
 
   React.useEffect(() => {
+    console.log(userSlice.id, userSlice.email, userSlice.name)
     let emptyArray = new Array(parseInt(questionSlice.questions));
     emptyArray.fill({});
     setQuestion(emptyArray);

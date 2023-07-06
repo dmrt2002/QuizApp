@@ -1,6 +1,7 @@
 const Admin = require("../modals/Admin");
 const Questions = require("../modals/Questions");
-const Users = require("../modals/Users")
+const Users = require("../modals/Users");
+const Results = require("../modals/Results")
 
 exports.registerAdmins = async (req, res) => {
   var name = req.body.name;
@@ -84,3 +85,38 @@ exports.getQuestions = async (req, res) => {
     res.status(200).json({ questions })
   }
 }
+
+exports.storeResult = async (req, res) => {
+  let { quizId, userId, percentage} = req.body;
+  Results.create({
+    userId: userId,
+    quizId: quizId,
+    percentage: percentage
+  }, async function (err, user) {
+    if(err) {
+      console.log(err)
+    }
+    else {
+      res.status(200)
+    }
+  })
+}
+
+exports.getQuizes = async(req,res) => {
+  let id = req.body.id;
+  let quizes = await Questions.find({ adminId: id })
+  res.status(200).json({quizes})
+}
+
+exports.getUsers = async(req,res) => {
+  let id = req.body.id;
+  let users = await Users.find({ quizId: id })
+  res.status(200).json({ users })
+}
+
+exports.getMarks = async(req,res) => {
+  let id = req.body.id;
+  let result = await Results.findOne({ userId: id })
+  res.status(200).json( { result } )
+}
+
