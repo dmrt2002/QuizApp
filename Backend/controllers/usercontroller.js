@@ -1,5 +1,6 @@
 const Admin = require("../modals/Admin");
 const Questions = require("../modals/Questions");
+const Users = require("../modals/Users")
 
 exports.registerAdmins = async (req, res) => {
   var name = req.body.name;
@@ -35,6 +36,26 @@ exports.adminLogin = async (req, res) => {
   }
 };
 
+exports.userLogin = async (req, res) => {
+  var name = req.body.name;
+  var email = req.body.email;
+  var quizId = req.body.quizId;
+  Users.create(
+      {
+        name: name,
+        email: email,
+        quizId: quizId
+      },
+      async function (err, user) {
+        if (err) {
+          res.status(400).json(err);
+        } else {
+          res.status(200).json({ user });
+        }
+      }
+    );
+}
+
 exports.createQuiz = async (req, res) => {
   try {
     let { questions, adminId, quizTitle} = req.body;
@@ -53,5 +74,13 @@ exports.createQuiz = async (req, res) => {
   }
   catch(e) {
     console.log(e)
+  }
+}
+
+exports.getQuestions = async (req, res) => {
+  let quizId = req.body.id;
+  let questions = await Questions.findOne({ _id: quizId })
+  if(questions) {
+    res.status(200).json({ questions })
   }
 }

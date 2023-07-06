@@ -22,6 +22,8 @@ app.use(cors());
 
 const adminRoutes = require("./routers/admins.js")
 app.use("/admins", adminRoutes);
+const userRoutes = require("./routers/users.js")
+app.use("/users", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`App is running on`, PORT);

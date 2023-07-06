@@ -2,12 +2,18 @@ import React from "react";
 import SideBar from "../components/SideBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
+import { updateURL } from "../store/questions/questionSlice";
+import { useNavigate } from "react-router";
 import axios from "axios";
 
 export default function Home() {
   const questionSlice = useSelector((state: RootState) => state.question);
   const userSlice = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
   const [question, setQuestion] = React.useState<Object[]>([]);
+  const navigate = useNavigate()
 
   React.useEffect(() => {
     let emptyArray = new Array(parseInt(questionSlice.questions));
@@ -22,7 +28,8 @@ export default function Home() {
       quizTitle: questionSlice.title,
     });
     if (res.status === 200) {
-      console.log("fuck");
+      dispatch(updateURL((res.data.question._id)))
+      navigate(`/quiz/${res.data.question._id}`)
     }
   };
 

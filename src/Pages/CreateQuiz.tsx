@@ -15,7 +15,7 @@ export default function CreateQuiz() {
 
 
   const submit = () => {
-    dispatch(updateTitle({title: title, questions: questionNo}));
+    dispatch(updateTitle({title: title, questions: questionNo, url: ""}));
     navigate("/create/question")
   }
   
