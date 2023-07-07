@@ -38,8 +38,8 @@ export default function adminRegister() {
         </p>
         <p className="flex flex-col items-center justify-center mt-10 text-center">
           <span>Already have an account?</span>
-          <Link to="/" className="underline">
-            Sign in!
+          <Link to="/login" className="underline">
+            Log in!
           </Link>
         </p>
         <p className="mt-6 text-sm text-center text-gray-300">

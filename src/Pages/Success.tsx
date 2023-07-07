@@ -18,7 +18,7 @@ export default function success() {
         </svg>
         <div className="text-center">
             <p className="text-gray-600 my-2">Quiz has been successfully created. The link for the quiz is</p>
-            <a className="underline" href={`http://127.0.0.1:5173/quiz/${questionSlice.url}`} target="_blank">http://127.0.0.1:5173/quiz/{questionSlice.url}</a>
+            <a className="underline" href={`https://quizsync-vqnz.onrender.com/quiz/${questionSlice.url}`} target="_blank">https://quizsync-vqnz.onrender.com/quiz/{questionSlice.url}</a>
             <div className="py-10 text-center">
                 <Link to="/create" className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
                     GO BACK 

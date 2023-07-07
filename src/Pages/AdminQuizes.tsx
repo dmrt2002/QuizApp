@@ -81,7 +81,7 @@ export default function Quizes() {
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="text-sm text-gray-900">
-                                  <a className="underline" href={`http://127.0.0.1:5173/quiz/${user._id}`} target="_blank">http://127.0.0.1:5173/quiz/{user._id}</a>
+                                  <a className="underline" href={`https://quizsync-vqnz.onrender.com/quiz/${user._id}`} target="_blank">https://quizsync-vqnz.onrender.com/quiz/{user._id}</a>
                                 </div>
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">

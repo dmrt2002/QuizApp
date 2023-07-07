@@ -62,7 +62,7 @@ function Login() {
             </p>
             <p className="flex flex-col items-center justify-center mt-10 text-center">
               <span>Don't have an account?</span>
-              <Link to="/register" className="underline">
+              <Link to="/" className="underline">
                 Get Started!
               </Link>
             </p>
