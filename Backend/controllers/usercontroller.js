@@ -120,3 +120,9 @@ exports.getMarks = async(req,res) => {
   res.status(200).json( { result } )
 }
 
+exports.getQuizCount = async (req, res) => {
+  let id = req.body.id;
+  let users = await Users.find({ quizId: id});
+  res.status(200).json({ count: users.length })
+}
+

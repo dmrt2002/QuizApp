@@ -9,6 +9,7 @@ router.post("/register", jsonParser, userController.registerAdmins);
 router.post("/register", jsonParser, userController.registerAdmins);
 router.post("/quiz/create", jsonParser, userController.createQuiz);
 router.post("/quizes", jsonParser, userController.getQuizes);
+router.post("/quiz/count", jsonParser, userController.getQuizCount);
 router.post("/quiz/users", jsonParser, userController.getUsers);
 router.post("/quiz/users/marks", jsonParser, userController.getMarks);
 module.exports = router;
