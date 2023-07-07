@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import SideBar from "../components/SideBar";
 import { AppDispatch } from "../store";
 import { updateTitle } from "../store/questions/questionSlice";
@@ -8,15 +8,21 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
 export default function CreateQuiz() {
-  const [questionNo, setQuestion] = React.useState("2");
-  const [title, setTitle] = React.useState("")
+  const [questionNo, setQuestion] = useState("2");
+  const [title, setTitle] = useState("")
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
 
 
   const submit = () => {
-    dispatch(updateTitle({title: title, questions: questionNo, url: ""}));
-    navigate("/create/question")
+    if(title === "") {
+      setError(true)
+    }
+    else {
+      dispatch(updateTitle({title: title, questions: questionNo, url: ""}));
+      navigate("/create/question")
+    }
   }
   
   return (
@@ -55,6 +61,23 @@ export default function CreateQuiz() {
           Submit
         </button>
       </div>
+      {error ? (
+          <>
+        <div
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed" style={{ bottom: "5vh", left: "2vw"}}
+          role="alert"
+        >
+          <span className="font-bold">Incomplete Submition</span>
+          <span className="block sm:inline pl-3">
+            Please enter title
+          </span>
+          <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+          </span>
+        </div>
+          </>
+        ): (
+          <></>
+        )}
     </>
   );
 }

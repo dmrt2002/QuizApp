@@ -41,6 +41,7 @@ export default function Quizes() {
             <div>
               <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <h2 className="m-5 text-center">My Quizes</h2>
                   <table className="min-w-full ml-5 divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
@@ -65,7 +66,7 @@ export default function Quizes() {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {dashboards !== undefined ? (
+                      {dashboards !== undefined && dashboards.length !== 0 ? (
                         dashboards.map((user, index: number) => {
                           return (
                             <tr key={index}>
@@ -95,7 +96,7 @@ export default function Quizes() {
                           );
                         })
                       ) : (
-                        <></>
+                        <div className="text-md m-5">No Data Found</div>
                       )}
                     </tbody>
                   </table>

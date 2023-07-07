@@ -14,6 +14,7 @@ export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
   const [question, setQuestion] = React.useState<Object[]>([]);
   const navigate = useNavigate()
+  const [error, setError] = React.useState(false)
 
   React.useEffect(() => {
     console.log(userSlice.id, userSlice.email, userSlice.name)
@@ -23,14 +24,23 @@ export default function Home() {
   }, []);
 
   const submit = async () => {
-    const res = await axios.post("http://localhost:5000/admins/quiz/create", {
-      questions: question,
-      adminId: userSlice.id,
-      quizTitle: questionSlice.title,
-    });
-    if (res.status === 200) {
-      dispatch(updateURL((res.data.question._id)))
-      navigate(`/quiz/${res.data.question._id}`)
+    for (let i = 0; i < question.length; i++) {
+      console.log(question[i])
+      if(!question[i].question || !question[i].opt1 || !question[i].opt2 || !question[i].opt3 || !question[i].opt4 || !question[i].answer) {
+        setError(true);
+        return;
+      }
+    }
+    if(!error) {
+      const res = await axios.post("http://localhost:5000/admins/quiz/create", {
+        questions: question,
+        adminId: userSlice.id,
+        quizTitle: questionSlice.title,
+      });
+      if (res.status === 200) {
+        dispatch(updateURL((res.data.question._id)))
+        navigate(`/quiz/success`)
+      }
     }
   };
 
@@ -184,6 +194,23 @@ export default function Home() {
           Submit
         </a>
       </div>
+      {error ? (
+          <>
+        <div
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed" style={{ bottom: "5vh", left: "2vw"}}
+          role="alert"
+        >
+          <span className="font-bold">Incomplete Submition</span>
+          <span className="block sm:inline pl-3">
+            Please enter title
+          </span>
+          <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+          </span>
+        </div>
+          </>
+        ): (
+          <></>
+        )}
     </div>
   );
 }

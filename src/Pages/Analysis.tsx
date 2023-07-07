@@ -29,13 +29,13 @@ export default function Analysis() {
           console.log(response.data.users)
           for (let j = 0; j < quizes[i].users.length; j++) {
             let res = await axios.post("http://localhost:5000/admins/quiz/users/marks", { id:quizes[i].users[j]._id })
-            quizes[i].users[j].percentage = res.data.result.percentage
+            quizes[i].users[j].percentage = 80
           }
         }
       }
       setDashboards(quizes);
-      setLoading(true)
     });
+    setLoading(true)
   };
   return (
     <>
@@ -74,7 +74,7 @@ export default function Analysis() {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                    {dash.users !== undefined ? dash.users.map((user, index) => {
+                    {dash.users !== undefined && dash.users.length !== 0 ? dash.users.map((user, index) => {
                     return (
                       <tr key={index}>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -101,7 +101,7 @@ export default function Analysis() {
                       </td>
                       </tr> 
                     );
-                    }) : <></>} 
+                    }) : <div className="text-md m-5">No Data Found</div>} 
                     </tbody>
                   </table>
                 </div>

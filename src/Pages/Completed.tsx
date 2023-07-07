@@ -5,8 +5,8 @@ import { RootState } from "../store";
 export default function Completed() {
   const userSlice = useSelector((state: RootState) => state.user);
   return (
-    <div className="bg-gray-100 h-screen flex justify-center items-center">
-      <div className="bg-white p-6  md:mx-auto">
+    <div className="bg-[#1A1A1A] h-screen flex justify-center items-center">
+      <div className="bg-[#1A1A1A]  p-6  md:mx-auto">
         <svg
           viewBox="0 0 24 24"
           className="text-green-600 w-16 h-16 mx-auto my-6"
@@ -17,10 +17,10 @@ export default function Completed() {
           ></path>
         </svg>
         <div className="text-center">
-          <p className="text-gray-600 my-2">
+          <p className="text-white my-2">
             Quiz has been successfully completed.
           </p>
-          <div className="text-gray-600 my-2">
+          <div className="text-white my-2">
             Thank you for Participating, {userSlice.name}
           </div>
         </div>

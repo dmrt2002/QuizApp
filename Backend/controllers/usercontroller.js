@@ -28,10 +28,12 @@ exports.adminLogin = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const user = await Admin.findByCredentials(email, password);
-    if (user === null) {
+    if (user === null || user === undefined) {
       res.status(401).json("Invalid Credentials");
     }
-    res.status(200).json({ user });
+    else {
+      res.status(200).json({ user });
+    }
   } catch (err) {
     res.status(400).json("Incorrect Password");
   }
