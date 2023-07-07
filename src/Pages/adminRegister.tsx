@@ -87,12 +87,6 @@ export default function adminRegister() {
               <label className="text-sm font-semibold text-gray-500">
                 Password
               </label>
-              <a
-                href="#"
-                className="text-sm text-blue-600 hover:underline focus:text-blue-800"
-              >
-                Forgot Password?
-              </a>
             </div>
             <input
               type="password"
