@@ -7,7 +7,7 @@ export interface userState {
 }
 const initialState: userState = {
     id: "1",
-    name: "fucker",
+    name: "Tushar",
     email:"tushar@gmail.com"
 }
 

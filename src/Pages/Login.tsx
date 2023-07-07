@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppDispatch } from "../store";
 import { updateUser } from "../store/user/userSlice";
 
@@ -39,9 +39,9 @@ function Login() {
             </p>
             <p className="flex flex-col items-center justify-center mt-10 text-center">
               <span>Don't have an account?</span>
-              <a href="#" className="underline">
+              <Link to="/register" className="underline">
                 Get Started!
-              </a>
+              </Link>
             </p>
             <p className="mt-6 text-sm text-center text-gray-300">
               Read our{" "}

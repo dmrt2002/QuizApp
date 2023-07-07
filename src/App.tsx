@@ -7,6 +7,7 @@ import SuccessPage from "./pages/Success";
 import LoginPage from "./pages/userLogin";
 import QuestionsPage from "./pages/Questions";
 import Analysis from "./pages/analysis";
+import Register from "./pages/adminRegister"
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/create/question" element={<Home />} />
         <Route path="/create" element={<CreateQuiz />} />
         <Route path="/quiz/success" element={<SuccessPage />} />
