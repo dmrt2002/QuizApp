@@ -12,7 +12,7 @@ export default function Home() {
   const questionSlice = useSelector((state: RootState) => state.question);
   const userSlice = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
-  const [question, setQuestion] = React.useState<Object[]>([]);
+  const [question, setQuestion] = React.useState<any[]>([]);
   const navigate = useNavigate()
   const [error, setError] = React.useState(false)
 
@@ -25,14 +25,13 @@ export default function Home() {
 
   const submit = async () => {
     for (let i = 0; i < question.length; i++) {
-      console.log(question[i])
       if(!question[i].question || !question[i].opt1 || !question[i].opt2 || !question[i].opt3 || !question[i].opt4 || !question[i].answer) {
         setError(true);
         return;
       }
     }
     if(!error) {
-      const res = await axios.post("http://localhost:5000/admins/quiz/create", {
+      const res = await axios.post("http://localhost:5000/api/admins/quiz/create", {
         questions: question,
         adminId: userSlice.id,
         quizTitle: questionSlice.title,

@@ -6,7 +6,7 @@ import CreateQuiz from "./pages/CreateQuiz";
 import SuccessPage from "./pages/Success";
 import LoginPage from "./pages/userLogin";
 import QuestionsPage from "./pages/Questions";
-import Analysis from "./pages/analysis";
+import Analysis from "./pages/Analysis";
 import Register from "./pages/adminRegister"
 import AdminQuizes from "./pages/AdminQuizes";
 import Completed from "./pages/Completed";
@@ -18,7 +18,7 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/create/question" element={<Home />} />
         <Route path="/create" element={<CreateQuiz />} />

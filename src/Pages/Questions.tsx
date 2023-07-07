@@ -10,7 +10,7 @@ export default function Questions() {
   const [questions, setQuestions] = useState([]);
   const [optionSelected, select] = useState<String[]>([]);
   const userSlice = useSelector((state: RootState) => state.user);
-  const [currentQuestion, setCurrentQuestion] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState<any>([]);
   const [currentIndex, setIndex] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Questions() {
     let param = {
       id: slug,
     };
-    let res = await axios.post("http://localhost:5000/users/questions", param);
+    let res = await axios.post("http://localhost:5000/api/users/questions", param);
     return res.data.questions;
   };
   let handleSelect = (index: number, answer: string) => {
@@ -38,7 +38,7 @@ export default function Questions() {
 
   let submit = async () => {
     let marks = 0;
-    questions.map((question, index) => {
+    questions.map((question: any, index: number) => {
       if (
         optionSelected[index] !== undefined &&
         optionSelected[index] === question.answer
@@ -52,7 +52,7 @@ export default function Questions() {
       userId: userSlice.id,
       percentage: percentage * 100,
     };
-    let res = await axios.post("http://localhost:5000/users/results", param);
+    let res = await axios.post("http://localhost:5000/api/users/results", param);
     if (res.status === 200) {
       navigate("/completed");
     }

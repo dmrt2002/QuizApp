@@ -15,12 +15,12 @@ export default function Analysis() {
     let param = {
       id: userSlice.id,
     };
-    let res = await axios.post("http://localhost:5000/admins/quizes", param);
+    let res = await axios.post("http://localhost:5000/api/admins/quizes", param);
     let arr = new Array();
     quizes = res.data.quizes;
     res.data.quizes.map(async (quiz: any) => {
       let response = await axios.post(
-        "http://localhost:5000/admins/quiz/users",
+        "http://localhost:5000/api/admins/quiz/users",
         { id: quiz._id }
       );
       for (let i = 0; i < quizes.length; i++) {
@@ -28,7 +28,7 @@ export default function Analysis() {
           quizes[i].users = response.data.users;
           console.log(response.data.users)
           for (let j = 0; j < quizes[i].users.length; j++) {
-            let res = await axios.post("http://localhost:5000/admins/quiz/users/marks", { id:quizes[i].users[j]._id })
+            let res = await axios.post("http://localhost:5000/api/admins/quiz/users/marks", { id:quizes[i].users[j]._id })
             quizes[i].users[j].percentage = 80
           }
         }
@@ -44,7 +44,7 @@ export default function Analysis() {
       <div className="flex flex-col">
       <div className="overflow-x-auto">
         {dashboards !== undefined ? (
-          dashboards.map((dash, index) => {
+          dashboards.map((dash: any, index: number) => {
             return (
               <div key={index}>
               <h2 className="m-5 text-center">{dash.title}</h2>
@@ -74,7 +74,7 @@ export default function Analysis() {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                    {dash.users !== undefined && dash.users.length !== 0 ? dash.users.map((user, index) => {
+                    {dash.users !== undefined && dash.users.length !== 0 ? dash.users.map((user: any, index: number) => {
                     return (
                       <tr key={index}>
                       <td className="px-6 py-4 whitespace-nowrap">

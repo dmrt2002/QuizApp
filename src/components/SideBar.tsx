@@ -73,7 +73,7 @@ export default function SideBar() {
                 <span className="inline-flex justify-center items-center ml-4">
                   <BiLogOut size={20} />
                 </span>
-                <Link to="/login">
+                <Link to="/">
                 <span className="ml-2 text-sm tracking-wide truncate">
                  Logout
                 </span>

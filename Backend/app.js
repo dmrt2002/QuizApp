@@ -21,9 +21,15 @@ mongoose.connect(process.env.DB_URI, {
 app.use(cors());
 
 const adminRoutes = require("./routers/admins.js")
-app.use("/admins", adminRoutes);
+app.use("/api/admins", adminRoutes);
 const userRoutes = require("./routers/users.js")
-app.use("/users", userRoutes);
+app.use("/api/users", userRoutes);
+
+app.use(express.static(__dirname));
+app.get("*" , (req,res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
 
 app.listen(PORT, () => {
   console.log(`App is running on`, PORT);

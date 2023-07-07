@@ -17,9 +17,9 @@ export default function adminRegister() {
   
     const navigate = useNavigate();
   
-    const handleSubmit = async (event: Event) => {
-      event.preventDefault()
-      const res = await axios.post("http://localhost:5000/admins/register", {email: formData.email, password: formData.password, name: formData.name})
+    const handleSubmit = async (event: any) => {
+      event?.preventDefault()
+      const res = await axios.post("http://localhost:5000/api/admins/register", {email: formData.email, password: formData.password, name: formData.name})
       if(res.status === 200) {
         dispatch(updateUser({email: formData.email, id: res.data.user._id, name: res.data.user.name}))
         navigate("/admin/quizes")
@@ -38,7 +38,7 @@ export default function adminRegister() {
         </p>
         <p className="flex flex-col items-center justify-center mt-10 text-center">
           <span>Already have an account?</span>
-          <Link to="/login" className="underline">
+          <Link to="/" className="underline">
             Sign in!
           </Link>
         </p>
@@ -57,7 +57,7 @@ export default function adminRegister() {
         <h3 className="my-4 text-2xl font-semibold text-gray-700">
           Register Account
         </h3>
-        <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col space-y-5">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
         <div className="flex flex-col space-y-1">
             <label className="text-sm font-semibold text-gray-500">
               Name

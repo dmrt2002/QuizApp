@@ -16,10 +16,10 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: Event) => {
-    event.preventDefault();
+  const handleSubmit = async (event: any) => {
+    event.preventDefault(); 
     try {
-      const res = await axios.post("http://localhost:5000/admins/login", {
+      const res = await axios.post("http://localhost:5000/api/admins/login", {
         email: formData.email,
         password: formData.password,
       });
@@ -82,7 +82,7 @@ function Login() {
               Account Login
             </h3>
             <form
-              onSubmit={(e) => handleSubmit(e)}
+              onSubmit={handleSubmit}
               className="flex flex-col space-y-5"
             >
               <div className="flex flex-col space-y-1">

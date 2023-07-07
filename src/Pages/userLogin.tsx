@@ -18,11 +18,11 @@ function UserLogin() {
   const navigate = useNavigate();
   const { slug } = useParams();
 
-  const handleSubmit = async (event: Event) => {
-    event.preventDefault();
+  const handleSubmit = async (event: any) => {
+    event.preventDefault(); 
     if(formData.email !== "" && formData.name !== "") {
       try {
-        const res = await axios.post("http://localhost:5000/users/login", {
+        const res = await axios.post("http://localhost:5000/api/users/login", {
           email: formData.email,
           name: formData.name,
           quizId: slug,
@@ -56,7 +56,7 @@ function UserLogin() {
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white/5 border-white/10 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <form
-              onSubmit={(e) => handleSubmit(e)}
+              onSubmit={handleSubmit}
               className="p-6 space-y-4 md:space-y-6 sm:p-8"
             >
               <h1 className="text-xl text-gray-400 font-bold leading-tight tracking-tight md:text-2xl dark:text-white">

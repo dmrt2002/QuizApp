@@ -16,7 +16,7 @@ export default function Quizes() {
     let param = {
       id: userSlice.id,
     };
-    let res = await axios.post("http://localhost:5000/admins/quizes", param);
+    let res = await axios.post("http://localhost:5000/api/admins/quizes", param);
     quizes = res.data.quizes;
     let countArr = new Array(quizes.length);
     for (let i = 0; i < quizes.length; i++) {
@@ -24,7 +24,7 @@ export default function Quizes() {
         id: quizes[i]._id,
       };
       let res = await axios.post(
-        "http://localhost:5000/admins//quiz/count",
+        "http://localhost:5000/api/admins/quiz/count",
         param
       );
       quizes[i].count = res.data.count;
@@ -67,7 +67,7 @@ export default function Quizes() {
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                       {dashboards !== undefined && dashboards.length !== 0 ? (
-                        dashboards.map((user, index: number) => {
+                        dashboards.map((user: any, index: number) => {
                           return (
                             <tr key={index}>
                               <td className="px-6 py-4 whitespace-nowrap">
