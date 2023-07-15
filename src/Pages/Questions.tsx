@@ -27,7 +27,7 @@ export default function Questions() {
     let param = {
       id: slug,
     };
-    let res = await axios.post("http://localhost:5000/api/users/questions", param);
+    let res = await axios.post("/api/users/questions", param);
     return res.data.questions;
   };
   let handleSelect = (index: number, answer: string) => {
@@ -52,7 +52,7 @@ export default function Questions() {
       userId: userSlice.id,
       percentage: percentage * 100,
     };
-    let res = await axios.post("http://localhost:5000/api/users/results", param);
+    let res = await axios.post("/api/users/results", param);
     if (res.status === 200) {
       navigate("/completed");
     }

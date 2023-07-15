@@ -22,7 +22,7 @@ function UserLogin() {
     event.preventDefault(); 
     if(formData.email !== "" && formData.name !== "") {
       try {
-        const res = await axios.post("http://localhost:5000/api/users/login", {
+        const res = await axios.post("/api/users/login", {
           email: formData.email,
           name: formData.name,
           quizId: slug,

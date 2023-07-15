@@ -31,7 +31,7 @@ export default function Home() {
       }
     }
     if(!error) {
-      const res = await axios.post("http://localhost:5000/api/admins/quiz/create", {
+      const res = await axios.post("/api/admins/quiz/create", {
         questions: question,
         adminId: userSlice.id,
         quizTitle: questionSlice.title,

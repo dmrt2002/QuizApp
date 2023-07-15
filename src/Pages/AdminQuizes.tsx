@@ -16,7 +16,7 @@ export default function Quizes() {
     let param = {
       id: userSlice.id,
     };
-    let res = await axios.post("http://localhost:5000/api/admins/quizes", param);
+    let res = await axios.post("/api/admins/quizes", param);
     quizes = res.data.quizes;
     let countArr = new Array(quizes.length);
     for (let i = 0; i < quizes.length; i++) {
@@ -24,7 +24,7 @@ export default function Quizes() {
         id: quizes[i]._id,
       };
       let res = await axios.post(
-        "http://localhost:5000/api/admins/quiz/count",
+        "/api/admins/quiz/count",
         param
       );
       quizes[i].count = res.data.count;

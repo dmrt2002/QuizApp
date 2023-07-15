@@ -15,12 +15,12 @@ export default function Analysis() {
     let param = {
       id: userSlice.id,
     };
-    let res = await axios.post("http://localhost:5000/api/admins/quizes", param);
+    let res = await axios.post("/api/admins/quizes", param);
     let arr = new Array();
     quizes = res.data.quizes;
     res.data.quizes.map(async (quiz: any) => {
       let response = await axios.post(
-        "http://localhost:5000/api/admins/quiz/users",
+        "/api/admins/quiz/users",
         { id: quiz._id }
       );
       for (let i = 0; i < quizes.length; i++) {
@@ -28,8 +28,8 @@ export default function Analysis() {
           quizes[i].users = response.data.users;
           console.log(response.data.users)
           for (let j = 0; j < quizes[i].users.length; j++) {
-            let res = await axios.post("http://localhost:5000/api/admins/quiz/users/marks", { id:quizes[i].users[j]._id })
-            quizes[i].users[j].percentage = 80
+            let res = await axios.post("/api/admins/quiz/users/marks", { id:quizes[i].users[j]._id })
+            quizes[i].users[j].percentage = +res.data.result.percentage
           }
         }
       }

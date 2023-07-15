@@ -19,7 +19,7 @@ export default function adminRegister() {
   
     const handleSubmit = async (event: any) => {
       event?.preventDefault()
-      const res = await axios.post("http://localhost:5000/api/admins/register", {email: formData.email, password: formData.password, name: formData.name})
+      const res = await axios.post("/api/admins/register", {email: formData.email, password: formData.password, name: formData.name})
       if(res.status === 200) {
         dispatch(updateUser({email: formData.email, id: res.data.user._id, name: res.data.user.name}))
         navigate("/admin/quizes")
